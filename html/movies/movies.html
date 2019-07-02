@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script type="text/javascript">
+			document.write('<script src="../../js/fix.js?rd=?rd=' + Math.random() + '"><\/script>');
+		</script>
+		<script type="text/javascript">
+			link([]);
+		</script>
+		<style type="text/css">
+			.mui-content{
+				padding:10px;
+			}
+			.movie-item{
+				display: block;
+				clear:both;
+				border-bottom:1px solid silver;
+				box-shadow: #333333;
+				margin-bottom:5px;
+			}
+			.movie-image{
+				display: inline-block;				
+				width:30%;
+			}
+			.movie-image img{
+				width:100%;
+			}
+			.movie-info{
+				display: inline-block;
+				
+				width:60%;					
+			}
+			.movie-info ul{
+				padding:0;
+				margin:0;
+				list-style: none;
+			}
+			
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <h1 class="mui-title">豆瓣电影</h1>
+		</header>
+		<div class="mui-content">
+		    <ul class="mui-table-view" id="movielist">
+		        
+		    </ul>
+		</div>
+		<script type="text/javascript">
+			script([]);
+		</script>
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function(){
+				//获取福州在映电影列表
+				mui.ajax('https://douban.uieee.com/v2/movie/in_theaters',{			      
+			      data:{
+//			        city:'福州',
+			      },
+			      type:"GET",
+			      dataType:'json',
+			      success: function(data){
+//			        console.log(data);
+			        render("#movielist","movielistScript",data);
+//			        var html = template('movielistScript', data);
+//			        mui("#movielist")[0].innerHTML = html;
+			      }
+			    });
+			    
+			    //绑定用户点击事件
+			    mui("#movielist").off('tap','li').on('tap','.movie-item',function(e){
+			    	e.preventDefault();
+			    	var movieid = this.getAttribute("id");
+			    	console.log(movieid);
+			    	
+			    	mui.openWindow({
+			    		url:'movie_detail.html',
+			    		id:'movie_detail.html',
+			    		extras:{
+			    			movieid:movieid
+			    		}
+			    	});
+			    });
+			});
+		</script>
+		
+		<script type="text/html" id="movielistScript">
+			{{each subjects as movie index}}
+			<div class="movie-item" id="{{movie.id}}">
+				<div class="movie-image">
+					<img src="{{movie.images.small}}">
+				</div>
+				<div class="movie-info">
+					<ul>
+            	        <li class="mui-table-view-cell">
+            	            <h4>{{movie.title}}</h4>
+            	        </li>
+            	        <li class="mui-table-view-cell">
+            	                 评分：{{movie.rating.average}}
+            	        </li>
+            	        <li class="mui-table-view-cell">
+            	                 类型：{{each movie.genres as genre i}}{{genre}}{{if i<movie.genres.length-1}}、{{/if}}{{/each}}-{{movie.durations[0]}}
+            	        </li>
+            	        <li class="mui-table-view-cell">            	           
+            	                 主演：{{each movie.casts as cast index2}}{{cast.name}}&nbsp;{{/each}}
+            	          
+            	        </li>
+            	        <li class="mui-table-view-cell">            	            
+            	                 上映时间：{{each movie.pubdates as pubdate i}}{{pubdate}}{{if i<movie.pubdates.length-1}}、{{/if}}{{/each}}            	         
+            	        </li>	                	        
+            	   </ul>					
+				</div>
+			</div>
+						
+	        {{/each}}
+		</script>
+	</body>
+
+</html>

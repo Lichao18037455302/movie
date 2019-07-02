@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script type="text/javascript">
+			document.write('<script src="../../js/fix.js?rd=?rd=' + Math.random() + '"><\/script>');
+		</script>
+		<script type="text/javascript">
+			link([]);
+		</script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">新闻阅读</h1>
+		</header>
+		<div class="mui-content" id="news">
+		    
+		</div>
+		<script type="text/javascript">
+			script([]);
+		</script>
+		<script type="text/html" id="newsScript">
+			<div class="mui-card">
+				<div class="mui-card-header mui-card-media" 
+					style="height:40vw;background-image:url({{image}})"></div>
+				<div class="mui-card-content">
+					<div class="mui-card-content-inner">
+						<h4>{{title}}</h4>
+						<p>
+							<style src="{{css}}" type="text/css"></style>
+							{{#body}}
+						</p>
+					</div>
+				</div>
+				
+			</div>
+		</script>
+		<script type="text/javascript">
+			mui.init();
+			
+			mui.plusReady(function(){
+				//获取上一页传递过来的 newsid参数
+				var current = plus.webview.currentWebview();
+				var newsid = current.newsid;
+				//console.log(newsid);
+				//获取知乎新闻的内容
+				mui.ajax({
+					url:'https://news-at.zhihu.com/api/4/news/'+newsid,
+					type:'GET',
+					dataType:'json',
+					success:function(data){
+						console.log(JSON.stringify(data));
+						render("#news","newsScript",data);
+					},
+				});
+			});
+		</script>
+	</body>
+
+</html>

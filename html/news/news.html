@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script type="text/javascript">
+			document.write('<script src="../../js/fix.js?rd=?rd=' + Math.random() + '"><\/script>');
+		</script>
+		<script type="text/javascript">
+			link([]);
+		</script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <h1 class="mui-title">知乎新闻</h1>
+		</header>
+		<!--下拉刷新容器-->
+		<div id="refreshContainer" class="mui-content mui-scroll-wrapper">
+		  <div class="mui-scroll">
+		    <!--数据列表-->
+		    <ul class="mui-table-view mui-table-view-chevron" id="newlist">
+		      
+		    </ul>
+		  </div>
+		</div>
+		<script type="text/javascript">
+			script([]);
+		</script>
+		<script type="text/javascript">
+			var days=0;//初始化距离今天为0的新闻
+			mui.ready(function(){
+				mui.init({
+					 pullRefresh : {
+					    container:"#refreshContainer",//待刷新区域标识，querySelector能定位的css选择器均可，比如：id、.class等
+					    up : {
+					      height:50,//可选.默认50.触发上拉加载拖动距离
+					      contentrefresh : "正在加载...",//可选，正在加载状态时，上拉加载控件上显示的标题内容
+					      contentnomore:'没有更多数据了',//可选，请求完毕若没有更多数据时显示的提醒内容；
+					      callback :pullupfresh //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+					    },
+					    down : {
+					      style:'circle',//必选，下拉刷新样式，目前支持原生5+ ‘circle’ 样式
+					      auto:true,//可选,默认false.自动上拉加载一次
+					      callback :pulldownfresh //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+					    }
+					  }
+					 
+				});
+			});
+			function pulldownfresh(){
+				days = 0;
+				getData(false);
+			}
+			function pullupfresh(){
+				getData(true);
+			}
+			/**
+			 * 
+			 * @param {Object} isAddHTML 获取数据是追加还是替换，true为追加
+			 */
+			function getData(isAddHTML){
+				//因为知乎日报的新闻链接需要根据上拉加载不同日期的新闻，这里对路径参数进行处理便于统一请求方式
+				var url = "https://news-at.zhihu.com/api/4/news/latest"; //默认获取最新
+				if(days!=0){
+					var date = getDateBefore(days);
+					url = "https://news-at.zhihu.com/api/4/news/before/"+date;
+				}
+				mui.ajax(url,{
+					type:'GET',
+					dataType:'json',
+					success:function(data){
+						//console.log(data.stories.length);
+						render("#newlist","newlistScript",data,isAddHTML);
+						mui('#refreshContainer').pullRefresh().endPulldownToRefresh();
+						if(days>10){//默认翻10页就没有更多数据了
+							mui("#refreshContainer").pullRefresh().endPullupToRefresh(true);
+						}else{
+							mui("#refreshContainer").pullRefresh().endPullupToRefresh(false);
+						}
+					}
+				});
+				
+				mui("#newlist").off('tap','li').on('tap','li',function(e){
+					e.preventDefault();					
+					var id = this.getAttribute("id");
+					//console.log(id);
+					mui.openWindow({
+						url:"news_detail.html",
+						id:"news_detail.html",
+						extras:{
+							newsid:id
+						}
+					});
+				});
+				
+				days++;
+			}
+		</script>		
+		
+		<script type="text/html" id="newlistScript">
+			{{each stories}}
+			<li class="mui-table-view-cell mui-media" id="{{$value.id}}">
+	            <a href="javascript:;">
+	                <img class="mui-media-object mui-pull-left" src="{{$value.images[0]}}">
+	                <div class="mui-media-body">	                    
+	                    <p class="mui-ellipsis">{{$value.title}}</p>
+	                </div>
+	            </a>
+	        </li>
+	        {{/each}}
+		</script>
+	</body>
+
+</html>

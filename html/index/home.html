@@ -1,0 +1,209 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script type="text/javascript">
+			document.write('<script src="../../js/fix.js?rd=' + Math.random() + '"><\/script>');
+		</script>
+		<script type="text/javascript">
+			link(['../../css/swiper-3.4.2.min.css', '../../css/index/home.css', '../../css/news/newsList.css']);
+		</script>
+	</head>
+
+	<body>
+		<div class="mui-content mui-scroll-wrapper" id="pullrefresh">
+			<div class="mui-scroll">
+				<nav>
+					<h5 id="city">定位中..</h5>
+					<input type="text" name="" id="search" readonly="readonly" value="搜索赛事、新闻、店铺" placeholder="" />
+					<span class="mui-icon mui-icon-search"></span>
+				</nav>
+				<div class="swiper-container">
+					<div class="swiper-wrapper" id="banner_warp">
+						<div class="swiper-slide"><img src="../../images/banner1.png" /></div>
+						<div class="swiper-slide"><img src="../../images/banner2.png" /></div>
+						<div class="swiper-slide"><img src="../../images/banner3.png" /></div>
+					</div>
+					<div class="swiper-pagination"></div>
+				</div>
+				<div class="mui-row mui-text-center navig">
+					<div class="mui-col-sm-3 mui-col-xs-3" id="newslist">
+						<img src="../../images/homepage_icon_nformation.png" />
+						<p>官方资讯</p>
+					</div>
+					<div class="mui-col-sm-3 mui-col-xs-3" >
+						<img src="../../images/homepage_icon_nearly shop.png" />
+						<p>附近店铺</p>
+					</div>
+					<div class="mui-col-sm-3 mui-col-xs-3 " >
+						<img src="../../images/homepage_icon_people nearly.png" />
+						<p>附近的人</p>
+					</div>
+					<div class="mui-col-sm-3 mui-col-xs-3" data-href="richScan.html">
+						<img src="../../images/homepage_icon_scan.png" />
+						<p>扫一扫</p>
+					</div>
+				</div>
+				<div class="gameList" id="siglematch_warp">
+					<div class="nodata"></div>
+					<img class="matchLogo" src="../../images/homepage_roihf.jpg" />
+					<div class="matchDetails">
+						<h4 class="mui-text-center">一起来战吧!!!</h4>
+						<p class="mui-text-center"><b id="timer_h">11</b>:<b id="timer_m">01</b>:<b id="timer_s">00</b></p>
+						<img class="matchBtn" src="../../images/matchBtn.png" />
+						<div class="mui-text-center">距离你100m</div>
+					</div>
+				</div>
+				<div class="competition">
+					<div class="mui-text-center">
+						<div class="head">
+							<i class="iconfont icon-competition"></i> 最新赛事
+							<button class="btn_change" id="changematch">换一组</button>
+							<!--<span id="eventsMore">更多<i class="mui-icon mui-icon-arrowright" style="font-size: 16px;"></i></span>-->
+						</div>
+						<ul class="mui-table-view mui-text-left" id="newmatch_warp" style="min-height: 120px;">
+							<div class="nodata"></div>
+							<li class="mui-table-view-cell mui-media matchList">
+								<a href="javascript:;">
+									<img class="mui-media-object mui-pull-left" src="../../images/1v.png">
+									<div class="mui-media-body">
+										<b>报名中</b>幸福
+										<p class="mui-ellipsis"><i class="iconfont icon-shop"></i> 我已经发起来一场比赛</p>
+										<p class="imgList">
+											<img src="../../images/defuser.jpg" />
+											<img src="../../images/defuser.jpg" />
+											<img src="../../images/defuser.jpg" />
+											<img src="../../images/defuser.jpg" />
+											<img src="../../images/defuser.jpg" />
+										</p>
+									</div>
+									<div class="dec">
+										<img src="../../images/fun.png" />
+										<time>6-12 12：00</time>
+									</div>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="topic" style="padding: 0;">
+					<img src="../../images/faqqq.jpg" id="topic_warp" />
+				</div>
+				<div class="competition">
+					<h5 class="mui-text-center">
+						<div class="head">
+							<i class="iconfont icon-praise"></i>
+							店铺推荐
+							<button class="btn_change" id="changestore">换一组</button>
+						</div>
+						<div class="mui-row mui-text-left recommend" id="nearstore_warp" style="overflow: hidden;">
+							<div class="nodata"></div>
+							<div class="mui-col-sm-6 mui-col-xs-6 storeinfo" >
+								<p class="star mui-pull-left">
+									<span class="scorewarp1">
+										<i style="width: calc(4.6 * 13px);"></i> 
+									</span> 2.6<br />
+									<span class="storeName">新华书店</span>
+								</p>
+								<img class="mui-pull-left loadthumb storeImg" src="../../images/xinhua.png" />
+							</div>
+							<div class="mui-col-sm-6 mui-col-xs-6 storeinfo" >
+								<p class="star mui-pull-left">
+									<span class="scorewarp1">
+										<i style="width: calc(4.6 * 13px);"></i> 
+									</span> 4.7<br />
+									<span class="storeName">晨光文具店</span>
+								</p>
+								<img class="mui-pull-left loadthumb storeImg" src="../../images/chenguang.png" />
+							</div>
+							<div class="mui-col-sm-6 mui-col-xs-6 storeinfo" >
+								<p class="star mui-pull-left">
+									<span class="scorewarp1">
+										<i style="width: calc(4.6 * 13px);"></i> 
+									</span> 3.6<br />
+									<span class="storeName">王婆大虾</span>
+								</p>
+								<img class="mui-pull-left loadthumb storeImg" src="../../images/wangpodaxia.png" />
+							</div>
+							<div class="mui-col-sm-6 mui-col-xs-6 storeinfo" >
+								<p class="star mui-pull-left">
+									<span class="scorewarp1">
+										<i style="width: calc(4.6 * 13px);"></i> 
+									</span> 4.6<br />
+									<span class="storeName">星巴克</span>
+								</p>
+								<img class="mui-pull-left loadthumb storeImg" src="../../images/xingbake.jpg" />
+							</div>
+						</div>
+					</h5>
+				</div>
+				<div class="competition">
+					<img src="../../images/strongCard.png" />
+					<div class="mui-row mui-text-left recommend cardList" id="cardgroup_warp" style="padding: 0 6px;">
+						<div class="mui-col-sm-4 mui-col-xs-4 header cardgroupdetail" style="padding: 0 5px;">
+							<div class="cardgroupimgbox">
+								<img class="loadthumb"  src="../../images/moon.png" />
+							</div>
+							<h5 class="mui-col-xs-12 mui-ellipsis cardName">月仙子</h5>
+							<div class="mui-row">
+								<span class="mui-ellipsis">玩家:月仙子</span>
+							</div>
+						</div>
+						<div class="mui-col-sm-4 mui-col-xs-4 header cardgroupdetail" style="padding: 0 5px;">
+							<div class="cardgroupimgbox">
+								<img class="loadthumb" src="../../images/kaipai.png"  />
+							</div>
+							<h5 class="mui-col-xs-12 mui-ellipsis cardName">卡牌</h5>
+							<div class="mui-row">
+								<span class="mui-ellipsis">玩家:卡牌</span>
+							</div>
+						</div>
+						<div class="mui-col-sm-4 mui-col-xs-4 header cardgroupdetail" style="padding: 0 5px;">
+							<div class="cardgroupimgbox">
+								<img class="loadthumb"  src="../../images/huaxianzi.png"  />
+							</div>
+							<h5 class="mui-col-xs-12 mui-ellipsis cardName">花仙子</h5>
+							<div class="mui-row">
+								<span class="mui-ellipsis">玩家:花仙子</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="newslistwarp">
+					<div class="head">
+						<hr />
+						<span>最新资讯</span>
+						<div style="height: 8px;"></div>
+					</div>
+					<ul class="newslist" id="news_warp">
+						<li class="newsinfo" >
+							<div class="newsimgbox">
+								<img class="loadthumb" src="../../images/haigou.png"  />
+							</div>
+							<h5 style="margin-top:15px ;">海边遛狗</h5>
+							<p>狗说：这水可凉！</p>
+							<span class="newtype ">狗</span>
+						</li>
+						<li class="newsinfo" >
+							<div class="newsimgbox">
+								<img class="loadthumb" src="../../images/dengta.png"  />
+							</div>
+							<h5 style="margin-top:15px ;">瞭望灯塔</h5>
+							<p>给汹涌澎湃的海中指引迷途的人们带来希望</p>
+							<span class="newtype ">桥</span>
+						</li>
+					</ul>
+				</div>
+				<p class="mui-text-center cor-999">~到底了~</p>
+			</div>
+		</div>
+		<script type="text/javascript">
+			//必须顺序加载
+			script(['../../js/lib/swiper-3.4.1.min.js', '../../js/index/home.js']);
+		</script>
+	</body>
+
+</html>

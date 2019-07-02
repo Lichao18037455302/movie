@@ -1,0 +1,73 @@
+{
+  "index.html": {
+    "refer": [
+      "html/main.html",
+      "html/hello.html"
+    ],
+    "resources": []
+  },
+  "html/main.html": {
+    "resources": [
+      "html/index/home.html"
+    ],
+    "refer": [
+      "html/index/home.html",
+      "html/my/user.html",
+      "html/movies/movies.html",
+      "html/news/news.html"
+    ]
+  },
+  "html/hello.html": {
+    "refer": [
+      "html/main.html"
+    ],
+    "resources": []
+  },
+  "html/index/home.html": {
+    "refer": [
+      "html/index/citySelect.html",
+      "html/index/search.html",
+      "html/index/richScan.html",
+      "html/index/news.html"
+    ],
+    "resources": []
+  },
+  "html/movies/movies.html": {
+    "refer": [
+      "html/movies/movie_detail.html"
+    ],
+    "resources": []
+  },
+  "html/movies/movie_detail.html": {
+    "refer": [
+      "html/movies/movie_play.html"
+    ],
+    "resources": []
+  },
+  "html/my/user.html": {
+    "refer": [
+      "html/login/login.html",
+      "html/my/uploadImg.html",
+      "html/my/mySetting.html",
+      "html/my/myInfo.html"
+    ],
+    "resources": []
+  },
+  "html/login/login.html": {
+    "refer": [
+      "html/login/reg.html"
+    ],
+    "resources": []
+  },
+  "html/my/mySetting.html": {
+    "refer": [
+      "html/my/myAccount.html"
+    ],
+    "resources": []
+  },
+  "html/news/news.html": {
+    "refer": [
+      "html/news/news_detail.html"
+    ]
+  }
+}

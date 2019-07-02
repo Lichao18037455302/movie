@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script type="text/javascript">
+			document.write('<script src="../../js/fix.js?rd=?rd=' + Math.random() + '"><\/script>');
+		</script>
+		<script type="text/javascript">
+			link([]);
+		</script>
+		<style type="text/css">
+			html,body{
+				background:#333;
+			}
+			.hint{
+				font-size:18px;
+				color:pink;
+				text-indent: 2em;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">影片播放</h1>
+		</header>
+		<div class="mui-content">		    
+		    <div id="player">
+		    	
+		    </div>		    
+		    <p id="hint" style="font-size:14px;"></p>
+		</div>
+		<script type="text/javascript">
+			script([]);
+		</script>
+		<script type="text/html" id="playerScript">	
+			<!--<video id="my-video" class="video-js" controls preload="auto" width="{{width}}" height="500" {{autoplay}}
+				  poster="{{poster}}" data-setup="{}">
+		        <source src="{{movieurl}}" type="video/mp4">		    
+		        <p class="vjs-no-js"> To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a> </p>
+		    </video>-->
+		    
+		    <video width="{{width}}" height="400" poster="{{poster}}" controls="controls" preload="metadata" {{autoplay}}>
+		    	<source src="{{movieurl}}" type="video/mp4" id="source"></source>
+		    	当前浏览器不支持 video直接播放，点击这里下载视频： <a href="{{movieurl}}">下载视频</a>
+		    </video>
+		</script>
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function(){
+				var current = plus.webview.currentWebview();
+				var movieurl = current.movieurl;			
+				var poster = current.poster;
+				console.log(movieurl);
+				current.setStyle({
+   					 videoFullscreen: 'auto'
+				});
+
+				var autoplay="";
+				if(plus.networkinfo.getCurrentType()==plus.networkinfo.CONNECTION_ETHERNET ||
+					plus.networkinfo.getCurrentType()==plus.networkinfo.CONNECTION_WIFI
+				){
+					autoplay='autoplay="autoplay"';
+				}
+
+				console.log(autoplay);
+				
+				var html = template('playerScript', {
+					"movieurl":movieurl,
+					"autoplay":autoplay,
+					"width": plus.display.resolutionWidth,
+					"poster":poster
+				});
+				//console.log(html);
+				mui("#player")[0].innerHTML = html;
+				
+				if(autoplay==""){
+					mui("#hint")[0].innerHTML = "你当前处于移动网络，看视频需要消耗流量，请注意";
+				}else{
+					mui("#hint")[0].innerHTML = "视频缓冲中，请耐心等待";
+					
+					/*
+					var myPlayer = videojs('my-video');
+					videojs("my-video").ready(function(){
+						var myPlayer = this;
+						myPlayer.play();
+					});
+					*/
+				}
+			});
+		</script>
+	</body>
+
+</html>
